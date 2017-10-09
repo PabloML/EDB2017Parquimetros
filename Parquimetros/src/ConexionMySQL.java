@@ -64,7 +64,7 @@ public class ConexionMySQL  {
 	 try{	
 			// Se crea una sentencia jdbc para realizar la consulta
 			java.sql.Statement stmt = conexion.createStatement();
-			toReturn= new String[20];
+			toReturn= new String[12];
 			// Se prepara el string SQL de la consulta
 			String sql = "SHOW TABLES;" ; 
 		

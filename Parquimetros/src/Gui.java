@@ -191,7 +191,7 @@ public class Gui {
 	    	  // obtenemos el modelo de la tabla a partir de la consulta para 
 	    	  // modificar la forma en que se muestran de algunas columnas  
 	    	  tabla.createColumnModelFromQuery();
-	    	  textArea.setText(textArea.getText()+"consulta realizada con éxito\n\n");
+	    	  textArea.setText(textArea.getText()+"Consulta realizada con éxito\n\n");
 	    	  for (int i = 0; i < tabla.getColumnCount(); i++)
 	    	  { // para que muestre correctamente los valores de tipo TIME (hora)  		   		  
 	    		 if	 (tabla.getColumn(i).getType()==Types.TIME)  
@@ -215,7 +215,9 @@ public class Gui {
 	    	  
 	    	  
 	       }
-	      catch (SQLException ex){ }
+	      catch (SQLException ex){
+	    	  textArea.setText(textArea.getText()+ex.getMessage()+"\n\n");
+	      }
 	      
 	   }
 }

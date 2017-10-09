@@ -136,7 +136,3 @@ public class Inspector extends JFrame {
 
 
 }
-	
-	
-	
-

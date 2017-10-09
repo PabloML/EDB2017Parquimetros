@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/programas pablo/Elementos de Bases de Datos/Cursada 2017/Proyecto/EDB2017Parquimetros/Parquimetros/quicktable-3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/programas pablo/Elementos de Bases de Datos/Cursada 2017/Proyecto/EDB2017Parquimetros/Parquimetros/mysql-connector-java-8.0.8-dmr-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/programas pablo/Elementos de Bases de Datos/Cursada 2017/Proyecto/EDB2017Parquimetros/Parquimetros/jgoodies-common-1.8.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/programas pablo/Elementos de Bases de Datos/Cursada 2017/Proyecto/EDB2017Parquimetros/Parquimetros/jgoodies-forms-1.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/programas pablo/Elementos de Bases de Datos/Cursada 2017/Proyecto/EDB2017Parquimetros/forms-1.0.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/programas pablo/Elementos de Bases de Datos/Cursada 2017/Proyecto/EDB2017Parquimetros/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/programas pablo/Elementos de Bases de Datos/Cursada 2017/Proyecto/EDB2017Parquimetros/mysql-connector-java-5.1.32-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Desktop/programas pablo/Elementos de Bases de Datos/Cursada 2017/Proyecto/EDB2017Parquimetros/quicktable-3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

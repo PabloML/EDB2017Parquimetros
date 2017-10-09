@@ -100,8 +100,9 @@ public class UnidadPersonal extends JFrame{
 			CBUbicaciones = new JComboBox<String>(ubicaciones);
 			CBUbicaciones.setToolTipText("Ubicacion");
 			CBUbicaciones.setBounds(515, 21, 184, 20);
+			actualizarIds(CBUbicaciones.getSelectedItem().toString(),legajo);
 			CBUbicaciones.addActionListener (new ActionListener () {
-				public void actionPerformed(ActionEvent e) {
+				public void actionPerformed(ActionEvent e) {					
 					actualizarIds(CBUbicaciones.getSelectedItem().toString(),legajo);
 				}
 			});
@@ -216,25 +217,25 @@ public class UnidadPersonal extends JFrame{
 
 			int ndia = Integer.parseInt(d);
 			if(ndia==1) {
-				dia = "do";
+				dia = "Do";
 			}
 			else if (ndia==2) {
-				dia = "lu";
+				dia = "Lu";
 			}
 			else if (ndia==3) {
-				dia = "ma";
+				dia = "Ma";
 			}
 			else if (ndia==4) {
-				dia = "mi";
+				dia = "Mi";
 			}
 			else if (ndia==5) {
-				dia = "ju";
+				dia = "Ju";
 			}
 			else if (ndia==6) {
-				dia = "vi";
+				dia = "Vi";
 			}
 			else {
-				dia = "sa";
+				dia = "Sa";
 			}
 			String sql2 = "select curtime();";
 			rs = stmt.executeQuery(sql2);
@@ -253,10 +254,10 @@ public class UnidadPersonal extends JFrame{
 
 			String turno="";
 			if(hora2<14 && hora2 >=8) {
-				turno="m";
+				turno="M";
 			}
 			else if(hora2>=14 && hora2<20) {
-				turno="t";
+				turno="T";
 			}
 
 
@@ -291,7 +292,12 @@ public class UnidadPersonal extends JFrame{
 				stmt2.executeUpdate();
 				stmt2.close();
 				generarMultas(date,hora,rs.getInt(1),uc[0],uc[1]);
+			}else {
+				
+				JOptionPane.showMessageDialog(this,
+						"No tiene autorizacion para labrar una multa en esta ubicación");
 			}
+			
 
 
 		}
@@ -321,6 +327,7 @@ public class UnidadPersonal extends JFrame{
 				// Se prepara el string SQL de la consulta
 				sql1 = "select * from estacionados where patente= '" +pat+ "' and calle = '"+calle+"' and altura = "+altura+";";
 				rs = stmt.executeQuery(sql1);
+				
 				if(!rs.next()) {
 					// Se ligan los parÃ¡metros efectivos
 					stmt2.setDate(1, fecha);
@@ -328,7 +335,10 @@ public class UnidadPersonal extends JFrame{
 					stmt2.setString(3, pat);
 					stmt2.setInt(4, id);
 					stmt2.executeUpdate();
+				}else {
+					System.out.println("no corresponde multar"+pat);
 				}
+				
 				
 			}
 			refrescarTablaMultas(fecha,hora,id);
@@ -451,7 +461,7 @@ public class UnidadPersonal extends JFrame{
 			java.sql.Statement stmt = conexion.createStatement();
 
 			// Se prepara el string SQL de la consulta
-			String sql = "SELECT calle, altura FROM asociado_con WHERE legajo = '" + legajo + "';"; 
+			String sql = "SELECT DISTINCT calle, altura FROM asociado_con WHERE legajo = '" + legajo + "';"; 
 
 			// Se ejecuta la sentencia y se recibe un resultado
 			java.sql.ResultSet rs = stmt.executeQuery(sql);
@@ -460,6 +470,39 @@ public class UnidadPersonal extends JFrame{
 			while(rs.next())
 			{
 				toRet.addElement(rs.getString("calle")+" "+rs.getString("altura"));
+				
+				
+			}
+
+			
+		}
+		catch (java.sql.SQLException ex) {}
+
+
+
+
+		return toRet;
+	}
+	
+	private DefaultComboBoxModel<String> obtenerNroParquimetros(String calle,String altura) {
+		DefaultComboBoxModel<String> toRet = new DefaultComboBoxModel<String>();
+
+		try
+		{
+
+			// Se crea una sentencia jdbc para realizar la consulta
+			java.sql.Statement stmt = conexion.createStatement();
+
+			// Se prepara el string SQL de la consulta
+			String sql = "SELECT id_parq FROM parquimetros WHERE calle = '" + calle + "' and altura ='"+altura+"'';"; 
+
+			// Se ejecuta la sentencia y se recibe un resultado
+			java.sql.ResultSet rs = stmt.executeQuery(sql);
+
+
+			while(rs.next())
+			{
+				toRet.addElement(rs.getString("id_parq"));
 				
 				
 			}
@@ -473,4 +516,5 @@ public class UnidadPersonal extends JFrame{
 
 		return toRet;
 	}
+	
 }

@@ -10,7 +10,7 @@ function FindProxyForURL(url, host) {
 	    }
 	  }
     }
-    return "PROXY localhost:54350; DIRECT";
+    return "PROXY localhost:49374; DIRECT";
   }
   if( url.substring(0,6) == "https:" ) {
     return "DIRECT";
